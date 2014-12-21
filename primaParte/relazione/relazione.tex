@@ -1,0 +1,29 @@
+\documentclass[11pt]{article}
+\title{Progetto Programmazione Concorrente e Distribuita\\Prima Parte}
+\author{Suierica Bogdan Ionut 1008089}
+
+\begin{document}
+
+\maketitle
+\section{Introduzione}
+\subsection{Scopo del documento}
+Lo scopo del documento è quello di presentare le principali scelte architetturali del progetto.
+\section{Descrizione Progetto}
+Il progetto realizzato permette di ordinare un puzzle di caratteri.  Il file in input contiene il testo rappresentato dal puzzle disordinato. Il file in output contiene il testo rappresentato dal puzzle disordinato organizzato in una riga, il puzzle ordinato in forma tabellare, e la dimensione della tabella. 
+\section{Componenti e Classi}
+\subsection{Package puzzle}
+Per questa prima parte del progetto, puzzle rappresenta il package globale del progetto. Si potevano utilizzare due package differenti, uno per le operazioni di input-output e uno per le funzionalità di ordinamento del puzzle, ma ho preferito tenere tutto insieme.
+\subsection{Interface SolverAlgorithm}
+Interfaccia che espone la funzionalità di ordinare un Puzzle. Il suo unico metodo \textbf{solve} viene realizzato nella classe \textbf{SolvedPuzzle}.
+\subsection{Classe IOReader}
+Questa classe rappresenta la lettura da file del puzzle disordinato in forma tabellare. Quando avviene la lettura , calcola la dimensione della tabella.
+\subsection{Classe IOWriter}
+Questa classe rappresenta la scrittura su file. 
+\subsection{Classe Tile}
+Questa classe rappresenta il singolo pezzo del puzzle. Ogni pezzo ha un id univoco e gli id dei pezzi che li stanno vicino nelle quattro direzioni. 
+\subsection{Classe Puzzle}
+Questa classe rappresenta l'insieme di pezzi del puzzle. E' caratterizzata da un ArrayList di Tile , due interi che indicano la dimensione della puzzle, una stringa che indica il path a cui si trova il file in input e un riferimento all'oggeto \textbf{IOReader }.\\
+Inoltre alla costruzione dell'oggetto Puzzle avviene la lettura da file e l'ArrayList di Tile viene popolato.
+\subsection{Classe SolvedPuzzle}
+La classe \textbf{SolvedPuzzle} implementa l'interfaccia \textbf{SolverAlgorithm}. Ha il compito di salvarsi il puzzle disordinato e restituirlo ordinato attraverso il metodo realizzato solve, fornito dal interfaccia \textbf{SolverAlgorithm}. 
+\end{document}
