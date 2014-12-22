@@ -1,4 +1,5 @@
 \documentclass[11pt]{article}
+  \usepackage[utf8]{inputenc}
 \title{Progetto Programmazione Concorrente e Distribuita\\Prima Parte}
 \author{Suierica Bogdan Ionut 1008089}
 
@@ -11,19 +12,26 @@ Lo scopo del documento è quello di presentare le principali scelte architettura
 \section{Descrizione Progetto}
 Il progetto realizzato permette di ordinare un puzzle di caratteri.  Il file in input contiene il testo rappresentato dal puzzle disordinato. Il file in output contiene il testo rappresentato dal puzzle disordinato organizzato in una riga, il puzzle ordinato in forma tabellare, e la dimensione della tabella. 
 \section{Componenti e Classi}
+\subsection{Introduzione}
+Tutti i campi dati delle classi utilizzate nel progetto sono privati e dotati di metodi pubblici per permettere l'accesso. Questo offre mantenibilità, flessibilità ed estensibilità del codice.\\
+Nel progetto ho cercato di dividere tutti i vari compiti in classi.
 \subsection{Package puzzle}
-Per questa prima parte del progetto, puzzle rappresenta il package globale del progetto. Si potevano utilizzare due package differenti, uno per le operazioni di input-output e uno per le funzionalità di ordinamento del puzzle, ma ho preferito tenere tutto insieme.
+Per questa prima parte del progetto, puzzle rappresenta il package globale del progetto. Si potevano utilizzare due package differenti, uno per le operazioni di input-output e uno per le funzionalità di ordinamento del puzzle, ma ho preferito tenere tutto insieme, in quanto  tutte le classi erano relative allo stesso argomento e cioè a quello di ordinare un puzzle di stringhe da un file in input.
 \subsection{Interface SolverAlgorithm}
 Interfaccia che espone la funzionalità di ordinare un Puzzle. Il suo unico metodo \textbf{solve} viene realizzato nella classe \textbf{SolvedPuzzle}.
 \subsection{Classe IOReader}
-Questa classe rappresenta la lettura da file del puzzle disordinato in forma tabellare. Quando avviene la lettura , calcola la dimensione della tabella.
+Questa classe rappresenta la lettura da file del puzzle disordinato in forma tabellare. Quando avviene la lettura , calcola la dimensione della tabella attraverso dei contatori che contano i Tile con idNord="VUOTO" e idOvest="VUOTO".
 \subsection{Classe IOWriter}
-Questa classe rappresenta la scrittura su file. 
+Questa classe rappresenta la scrittura su file e come detto in precedenza, scrive il testo rappresentato dal puzzle disordinato, il puzzle ordinato in forma tabellare e la dimensione della tabella.
 \subsection{Classe Tile}
 Questa classe rappresenta il singolo pezzo del puzzle. Ogni pezzo ha un id univoco e gli id dei pezzi che li stanno vicino nelle quattro direzioni. 
 \subsection{Classe Puzzle}
-Questa classe rappresenta l'insieme di pezzi del puzzle. E' caratterizzata da un ArrayList di Tile , due interi che indicano la dimensione della puzzle, una stringa che indica il path a cui si trova il file in input e un riferimento all'oggeto \textbf{IOReader }.\\
-Inoltre alla costruzione dell'oggetto Puzzle avviene la lettura da file e l'ArrayList di Tile viene popolato.
+Questa classe rappresenta l'insieme di pezzi del puzzle. E' caratterizzata da un ArrayList di \textbf{Tile} , due interi che indicano la dimensione della puzzle, una stringa che indica il path a cui si trova il file in input e un riferimento all'oggeto \textbf{IOReader }.\\
+Inoltre alla costruzione dell'oggetto \textbf{Puzzle} avviene la lettura da file e l'ArrayList di \textbf{Tile} viene popolato.
 \subsection{Classe SolvedPuzzle}
 La classe \textbf{SolvedPuzzle} implementa l'interfaccia \textbf{SolverAlgorithm}. Ha il compito di salvarsi il puzzle disordinato e restituirlo ordinato attraverso il metodo realizzato solve, fornito dal interfaccia \textbf{SolverAlgorithm}. 
+\section{Logica Algoritmo di ricostruzione del puzzle}
+Per l'algoritmo di ricostruzione uso l'interfaccia \textbf{SolverAlgorithm} in cui viene reso disponibile il metodo \textbf{solve} che accetta un \textbf{Puzzle} come parametro. Il metodo \textbf{solve} implementato nella classe \textbf{SolvedPuzzle} chiama altri due metodi : \textbf{SolveFirstCol} e \textbf{SolveRemainingTile}. Il primo metodo serve a ordinare solamente la prima colonna del puzzle. Il secondo serve a ordinare il resto del puzzle partendo dalla prima colonna. Ho scelto di fare cosi pensando alla seconda parte del progetto che tratta la concorrenza.
+
+
 \end{document}
