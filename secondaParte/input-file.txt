@@ -1,0 +1,30 @@
+o2	o	s2	.1	VUOTO	i2
+l1	l	_3	e2	_5	z2
+Q1	Q	VUOTO	u1	o1	VUOTO
+p2	p	_5	i2	VUOTO	m1
+m1	m	i1	p2	VUOTO	VUOTO
+z1	z	u2	VUOTO	d1	u3
+_2	 	s1	u2	u3	ee1
+t1	t	VUOTO	VUOTO	u2	s1
+e1	e	VUOTO	s1	ee1	u1
+.1	.	d1	VUOTO	VUOTO	o2
+_5	 	l1	e3	p2	i1
+e3	e	e2	s2	i2	_5
+u2	u	t1	VUOTO	z1	_2
+i1	i	z2	_5	m1	VUOTO
+_3	 	_1	p1	l1	n1
+s2	s	_4	e4	o2	e3
+o1	o	Q1	_1	n1	VUOTO
+_1	 	u1	ee1	_3	o1
+e4	e	d1	VUOTO	.1	s2
+u1	u	VUOTO	e1	_1	Q1
+ee1	è	e1	_2	p1	_1
+s1	s	VUOTO	t1	_2	e1
+e2	e	p1	_4	e3	l1
+z2	z	n1	l1	i1	VUOTO
+i2	i	e3	o2	VUOTO	p2
+d1	d	z1	VUOTO	e4	_4
+u3	u	_2	z1	_4	p1
+p1	p	ee1	u3	e2	_3
+n1	n	o1	_3	z2	VUOTO
+_4	 	u3	d1	s2	e2

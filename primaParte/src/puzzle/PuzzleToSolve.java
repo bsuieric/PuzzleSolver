@@ -2,10 +2,10 @@ package puzzle;
 
 import java.util.ArrayList;
 
-public class SolvedPuzzle implements SolverAlgorithm {
+public class PuzzleToSolve implements SolverAlgorithm {
 	private ArrayList<Tile> copiedPuzzle=new ArrayList<Tile>();
 	
-	public SolvedPuzzle(Puzzle p){
+	public PuzzleToSolve(Puzzle p){
 		copyArrayList(p);
 	}
 	
