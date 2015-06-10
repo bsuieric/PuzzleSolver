@@ -1,0 +1,40 @@
+\documentclass[13pt]{article}
+\usepackage[utf8]{inputenc}
+\title{Programmazione Concorrente e Distribuita\\Terza Parte}
+\author{Suierica Bogdan Ionut 1008089}
+\usepackage{graphicx}
+\begin{document}
+\maketitle
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.7\linewidth]{../../../../../Dropbox/touslesmemes/RelazioneExtra/img/unipd}
+\label{fig:unipd}
+\end{figure}
+
+\newpage
+\section{Cambiamenti}
+In questa sezione verranno descritti i cambiamenti apportati al codice per permettere al programma di essere distribuito tra un server e un client.\\
+Sono stati individuati 3 package:
+\begin{itemize}
+	\item \textbf{Server: }il package contiene le classi:
+		\begin{itemize}
+			\item \textbf{PuzzleToSolve:} la classe definisce l'oggetto remoto implementando l'interfaccia \textit{SolverAlgorithm} con il suo metodo \textit{solve} (che si preoccupa di risolvere il puzzle)  ed estendendo la classe \textit{UnicastRemoteObject}. La classe contiene un costruttore con corpo vuoto che può sollevare un'eccezione di tipo RemoteException;
+			\item \textbf{PuzzleSolverServer: }è la classe che definisce il metodo \textit{main}. La classe crea l'istanza dell'oggetto remoto \textit{PuzzleToSolve} e gli associa un nome. Attraverso il metodo \textit{rebind} lo registra nell'RMI registry.
+		\end{itemize}
+	\item \textbf{Client:}il package contine le classi:
+		\begin{itemize}
+			\item \textbf{IOReader: }è la classe che si occupa della gestione dei file in input;
+			\item \textbf{IOWriter: }è la classe che si occupa della gestione dei file in output;
+			\item \textbf{PuzzleSolverClient: }è la classe che contiene il metodo \textit{main}. Il programma client interroga il registro RMI utilizzando il metodo statico \textit{lookup} della classe \textit{Naming}, il quale restituisce un riferimento di tipo \textit{Remote} all'oggetto cercato.Infine invoca il metodo remoto \textit{solve} facendo un downcast al tipo \textit{SolverAlgorithm}.
+		\end{itemize}
+	\item \textbf{Shared:} il package contiene le classi in comune del server e del client. Le classi \textit{Tile} e \textit{Puzzle} estendono l'interfaccia \textit{Serializable} in quanto gli oggetti vengono passati come parametri e come valori restituiti dal metodo \textit{solve}:
+		\begin{itemize}
+			\item \textbf{Tile:} rappresenta il singolo pezzo del puzzle;
+			\item \textbf{Puzzle:} rappresenta il puzzle;
+			\item \textbf{SolverAlgorithm:} rappresenta l'interfaccia remota. L'interfaccia estende l'interfaccia \textit{Remote}. È presente il metodo \textit{solve}, che ha il compito di risolvere il puzzle. Il metodo può sollevare un'eccezione di tipo \textit{RemoteException}.
+		\end{itemize}
+\end{itemize}
+
+
+\end{document}
