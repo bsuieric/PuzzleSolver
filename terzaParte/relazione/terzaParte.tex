@@ -14,8 +14,16 @@
 
 \newpage
 \section{Cambiamenti}
-In questa sezione verranno descritti i cambiamenti apportati al codice per permettere al programma di essere distribuito tra un server e un client.\\
-Sono stati individuati 3 package:
+In questa sezione verranno descritti i cambiamenti apportati al codice per permettere al programma di essere distribuito tra un server e un client. In particolare la classe \textit{Puzzle} contiene anche una copia dell'insieme non ordinato di Tile che rappresentano il puzzle. La classe \textit{PuzzleToSolve}, in seguito al cambiamento della classe \textit{Puzzle}, implementa l'interfaccia \textit{SolverAlgorithm} con il suo metodo \textit{solve} e si preoccupa solamente della risoluzione del puzzle. Il metodo \textit{solve} dell'interfaccia \textit{SolverAlgorithm} è stato modificato e adesso accetta un parametro di tipo \textit{Puzzle} e ritorno un \textit{Puzzle}.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.9\linewidth]{../../../uml/terzaParte}
+\caption{}
+\label{fig:terzaParte}
+\end{figure}
+
+Come richiesto dalla specifica il client si occupa della gestione dei file di input e di output.\\
+Il programma è stato suddiviso in 3 parti. Sono stati quindi individuati 3 package:
 \begin{itemize}
 	\item \textbf{Server: }il package contiene le classi:
 		\begin{itemize}
@@ -36,5 +44,25 @@ Sono stati individuati 3 package:
 		\end{itemize}
 \end{itemize}
 
+\newpage
+\section{Logica di comunicazione client-server}
+Per la comunicazione tra un server e un client il programma adotta la libreria RMI il cui scopo è di rendere trasparente al programmatore quasi tutti i dettagli della comunicazione su rete. Essa consenta infatti di invocare un metodo di un oggetto remoto.\\
+Per implementare il meccanismo RMI sono richiesti i seguenti punti:
+\begin{itemize}
+	\item Definizione dell'interfaccia remota \textit{SolverAlgorithm};
+	\item Definizione dell'oggetto remote \textit{PuzzleToSolve};
+	\item Creazione del server con il compito di creare un'istanza dell'oggetto remoto e registrare il riferimento associandogli una stringa identificativa. La registrazione avviene invocando il metodo statico \textit{rebind} della classe \textit{java.rmi.Naming};
+	\item Creazione del client che ha il compito di interrogare il registro RMI utilizzando il metodo statico lookup della classe \textit{java.rmi.Naming}, il quale restituisce un riferimento di tipo \textit{Remote} all'oggetto cercato.
+\end{itemize}
+La classe \textit{Puzzle e Tile} estondono l'interfaccia \textit{Serializable}. Viene trasmessa quindi una copia.
+
+\newpage
+\section{Compilazione}
+Dalla root principale è possibile avviare il commando per la compilazione di tutti i file attraverso l'istruzione \textbf{make}. Se si vuole lanciare il programma si devono utilizzare i seguenti script bash:
+\begin{itemize}
+	\item \textit{sh puzzlesolverserver.sh [nome\_del\_server]} : questo script riceve in input il nome del server. Con il lancio verrà eseguito il commando per avviare il registro rmi e il main del server;
+	\item \textit{sh puzzlesolverclient.sh [input\_file][output\_file][nome\_del\_server]} : questo script riceve in input 3 parametri, file in input, file in output e il nome del server. Con il lancio verrà eseguito il main del client. 
+\end{itemize}
+Prima di procedere con il lancio degli script bash si deve aver compilato.
 
 \end{document}
