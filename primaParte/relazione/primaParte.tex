@@ -40,19 +40,29 @@ Inoltre alla costruzione dell'oggetto \textbf{Puzzle} avviene la lettura da file
 La classe \textbf{PuzzleToSOlve} implementa l'interfaccia \textbf{SolverAlgorithm}. Ha il compito di salvarsi il puzzle disordinato e restituirlo ordinato attraverso il metodo realizzato "solve()", fornito dal interfaccia \textbf{SolverAlgorithm}. 
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.7\linewidth]{../../../uml/primaParte}
+\includegraphics[width=0.9\linewidth]{../../../uml/primaParte}
 \label{fig:primaParte}
 \end{figure}
 \newpage
 \section{Logica Algoritmo di ricostruzione del puzzle}
 Per l'algoritmo di ricostruzione uso l'interfaccia \textbf{SolverAlgorithm} in cui viene reso disponibile il metodo \textbf{solve} che accetta un \textbf{Puzzle} come parametro. Il metodo \textbf{solve} implementato nella classe \textbf{PuzzleToSolve} chiama altri due metodi : \textbf{SolveFirstCol} e \textbf{SolveRemainingTile}. Il primo metodo serve a ordinare solamente la prima colonna del puzzle. Il secondo serve a ordinare il resto del puzzle partendo dalla prima colonna. Ho scelto di fare cosi pensando alla seconda parte del progetto che tratta la concorrenza.
+
+\newpage
 \section{Correttezza}
 Precondizione : file formattato come da specifica.
 \subsection{Lettura da file}
 Il corpo del metodo "readContent" nella Classe \textbf{IOReader} è costituito da un istruzione \textit{try} che indica che nel blocco che segue può venire sollevata un'eccezione ed infatti, se questo dovesse succedere per un formattazione non ammessa del file, provoca un salto all'istruzione \textit{catch} in cui viene gestita l'eccezione occorsa. Dopo la lettura è vero che il \textbf{Puzzle} è riempito.
 \subsection{Algoritmo di ordinazione}
-La ricostruzione del puzzle è provocato dai due metodi della classe \textbf{PuzzleToSolve} : "solveFirstCol" e "solveRemainingTile", in cui viene creata una copia del puzzle disordinato in modo da avere a disposizione tutti gli elementi del puzzle.\\
-Il primo metodo determina la ricostruzione della prima colonna del puzzle. La correttezza di questo metodo è data dalla condizione di uscita del ciclo \textit{for} più esterno, cioè quando si uscirà dal ciclo si avrà riempito tutta la prima colonna. Inoltre il ciclo \textit{for} interno che scorre il puzzle copiato disordinato contiene un'altra condizione di uscita che indica il termine della lettura quando l'elemento idoneo è stato trovato.\\
-Il secondo metodo determina la ricostruzione del resto del puzzle. In questo caso abbiamo due cicli \textit{for}  annidati che scorrono rispettivamente righe e colonne con la differenza che il ciclo che scorre le colonne parte da 1, in quanto abbiamo già ordinato gli elementi della prima colonna. Il ciclo \textit{for} più interno che scorre il puzzle copiato disordinato presenta un'altra condizione d'uscita che serve a non fare calcoli inutili e cioè andare a cercare anche dopo aver trovato l'elemento.\\
+La ricostruzione del puzzle è provocato dai due metodi della classe \textbf{PuzzleToSolve} : "solveFirstCol" e "solveRemainingTile", in cui viene creata una copia del puzzle disordinato in modo da avere a disposizione tutti gli elementi del puzzle.
+Il primo metodo determina la ricostruzione della prima colonna del puzzle. La correttezza di questo metodo è data dalla condizione di uscita del ciclo \textit{for} più esterno, cioè quando si uscirà dal ciclo si avrà riempito tutta la prima colonna. Inoltre il ciclo \textit{for} interno che scorre il puzzle copiato disordinato contiene un'altra condizione di uscita che indica il termine della lettura quando l'elemento idoneo è stato trovato.
+Il secondo metodo determina la ricostruzione del resto del puzzle. In questo caso abbiamo due cicli \textit{for}  annidati che scorrono rispettivamente righe e colonne con la differenza che il ciclo che scorre le colonne parte da 1, in quanto abbiamo già ordinato gli elementi della prima colonna. Il ciclo \textit{for} più interno che scorre il puzzle copiato disordinato presenta un'altra condizione d'uscita che serve a non fare calcoli inutili e cioè andare a cercare anche dopo aver trovato l'elemento.
 All'uscita siamo sicuri che il puzzle è stato ordinato interamente.
+
+\section{Compilazione}
+Dalla root principale è possibile avviare il commando per la compilazione di tutti i file attraverso l'istruzione \textbf{make}. Se si vuole lanciare il programma si deve utilizzare il seguenti script bash:
+\begin{itemize}
+	\item \textit{sh PuzzleSolver.sh [input\_file][output\_file]} : questo script riceve in input 2 parametri, file di input e file di output.
+\end{itemize}
+Prima di procedere con il lancio degli script bash si deve aver compilato.
+
 \end{document}

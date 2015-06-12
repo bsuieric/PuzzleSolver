@@ -17,7 +17,7 @@
 In questa sezione verranno descritti i cambiamenti apportati alla versione precedente del programma in modo tale che la logica dell'algoritmo di risoluzione del puzzle sia concorrente. I cambiamenti effettuati sono minimi, in particolare è stato cambiato il metodo \textit{solve()} dell'interfaccia \textit{AlgorithmSolver} e l'implementazione di tale metodo.
 \begin{figure}[h]
 \centering
-\includegraphics[width=0.7\linewidth]{../../../uml/secondaParte}
+\includegraphics[width=0.9\linewidth]{../../../uml/secondaParte}
 \label{fig:secondaParte}
 \end{figure}
 
@@ -25,6 +25,7 @@ La classe PuzzleToSolve implementa l'interfaccia SolverAlgorithm. Oltre ad avere
 \\
 Essendo disponibile l'oggetto "Puzzle" è stato tolto il parametro alla funzione solve() dell'interfaccia \textit{SolverAlgorithm} che viene comunque utilizzata per permettere una futura estensibilità del codice. È quindi possibile inserire un differente algoritmo di risoluzione, presentando quindi alternative diverse allo sviluppatore e/o utilizzatore essendo necessaria la sola implementazione dell'interfaccia e del suo metodo \textit{solve()}.
 
+\newpage
 \section{Algoritmo di risoluzione}
 L'algoritmo di risoluzione è di tipo concorrente come richiesto dalla specifica relativa alla seconda parte del progetto.
 \\
@@ -44,7 +45,7 @@ La logica della risoluzione del puzzle è molto simile alla logica della prima p
 \section{Gestione dei Thread}
 Di seguito verranno descritte le conseguenze che possono presentarsi con l'avvio dei thread necessari per la risoluzione del puzzle.
 \subsection{Numero Thread}
-Il numero di thread cambia in base al numero di righe del puzzle pertanto il numero minimo di thread attivi può esser uno. 
+Il numero di thread cambia in base al numero di righe del puzzle, pertanto il numero minimo di thread attivi può esser uno. 
 \subsection{Interferenze, Deadlock, Attesa attiva}
 \begin{itemize}
 	\item \textbf{Interferenze}
@@ -55,5 +56,13 @@ Il numero di thread cambia in base al numero di righe del puzzle pertanto il num
 	Questo fenomeno non può mai presentarsi in quanto tutte le iterazione hanno condizioni di uscita date dalle precondizione del programma.
 \end{itemize}
 È stato scelto di non usare nessun costrutto di concorrenza per avere una soluzione quanto semplice.
+
+\section{Compilazione}
+Dalla root principale è possibile avviare il commando per la compilazione di tutti i file attraverso l'istruzione \textbf{make}. Se si vuole lanciare il programma si deve utilizzare il seguenti script bash:
+\begin{itemize}
+	\item \textit{sh PuzzleSolver.sh [input\_file][output\_file]} : questo script riceve in input 2 parametri, file di input e file di output.
+\end{itemize}
+Prima di procedere con il lancio degli script bash si deve aver compilato.
+
  
 \end{document}

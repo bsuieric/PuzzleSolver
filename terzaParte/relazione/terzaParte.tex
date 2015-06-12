@@ -23,6 +23,7 @@ In questa sezione verranno descritti i cambiamenti apportati al codice per perme
 \end{figure}
 
 Come richiesto dalla specifica il client si occupa della gestione dei file di input e di output.\\
+\newpage
 Il programma è stato suddiviso in 3 parti. Sono stati quindi individuati 3 package:
 \begin{itemize}
 	\item \textbf{Server: }il package contiene le classi:
@@ -57,6 +58,10 @@ Per implementare il meccanismo RMI sono richiesti i seguenti punti:
 La classe \textit{Puzzle e Tile} estondono l'interfaccia \textit{Serializable}. Viene trasmessa quindi una copia.
 
 \newpage
+\section{Robustezza}
+Non sono previsti metodi per il recupero dei dati nel caso di errori da parte del server o del client. Sono invece stati previsti blocchi try-catch per il codice che può sollevare eccezioni. In particolare il lato server può sollevare eccezioni durante il lancio del programma e durante la registrazione nell'RMI registry della stringa identificativa associata all'oggetto remoto. Per quanto riguarda il lato client, le eccezioni possono essere sollevate durante il lancio del programma e al momento dell'interrogazione  del registro RMI. 
+
+
 \section{Compilazione}
 Dalla root principale è possibile avviare il commando per la compilazione di tutti i file attraverso l'istruzione \textbf{make}. Se si vuole lanciare il programma si devono utilizzare i seguenti script bash:
 \begin{itemize}
